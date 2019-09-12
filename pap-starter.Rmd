@@ -1,0 +1,153 @@
+---
+title: "Broockman and Kalla PAP"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# knitr setup options
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+
+# load packages
+# step 1: run the next line in R to install the required packages
+# install.packages(c("tidyverse", "DeclareDesign"))
+library(tidyverse)
+library(DeclareDesign)
+```
+
+URL for the paper: http://tinyurl.com/broockmankalla
+
+
+# Overview
+
+
+# Research question
+
+
+# Hypotheses
+
+
+# Research design
+
+
+## Model
+
+1. Declare the study *population*. We'll treat Broockman and Kalla's baseline survey as our study population. If you are missing key characteristics of your study population, you can add them here, below data.
+
+Description in text
+
+```{r, cache = TRUE}
+# load the Broockman-Kalla baseline data
+bk_baseline <- read_rds(url("https://www.dropbox.com/s/8hx0fvk8ocym7te/broockman-kalla.RDS?dl=1"))
+```
+
+```{r}
+my_population <- declare_population(
+  data = bk_baseline
+  # you can add variables here like:
+  # young_indicator = if_else(vf_age < 21)
+)
+```
+
+2. Declare the *potential outcomes*. What are your outcomes? What are expected treatment effect sizes? Are there heterogeneous effects? Define a set of potential outcomes for each key outcome you plan to measure.
+
+Description in text
+
+```{r}
+my_potential_outcomes <- declare_potential_outcomes(
+
+)
+```
+
+## Inquiry
+
+Declare the estimand(s) -- what are the causal questions the study is trying to assess
+
+Description in text
+
+```{r}
+my_estimand_1 <- declare_estimand(
+  
+)
+```
+
+## Data strategy
+
+### Sampling and case selection
+
+Description in text
+
+```{r}
+# If your sample is the same as the population, you can delete the code below
+my_sampling <- declare_sampling(
+  
+)
+```
+
+### Treatment assignment
+
+Description in text
+
+For some random assignment function options, head to https://declaredesign.org/r/randomizr/articles/randomizr_vignette.html
+
+```{r}
+my_assignment_1 <- declare_assignment(
+  
+)
+```
+
+
+### Outcomes
+
+Description in text 
+
+```{r}
+outcomes <- declare_reveal(outcome_variables = c(), 
+                           assignment_variables = Z)
+```
+
+## Answer strategy
+
+Description in text 
+
+```{r}
+estimator1 <- declare_estimator(
+  
+)
+```
+
+## Design declaration
+
+```{r, eval = FALSE}
+study_design <- 
+  population + 
+  # add more steps here
+  # then switch eval to TRUE
+```
+
+# Diagnosis
+
+```{r, eval = FALSE}
+# when your design is ready, set eval to TRUE
+diagnosis <- diagnose_design(study_design, sims = 1000)
+```
+
+```{r, eval = FALSE}
+# when your design is ready, set eval to TRUE
+# this will print out a simple table of your diagnosands
+kable(get_diagnosands(diagnosis))
+```
+
+# Ethics
+
+
+
+# Mock results
+
+```{r, eval = FALSE}
+# when your design is ready, set eval to TRUE
+# these two lines create a simulated data frame and a simulated data frame of *estimates*
+# use them to code up the tables and figures you want to include in the PAP
+mock_data <- draw_data(study_design)
+mock_estimates <- draw_estimates(study_design)
+```
+
