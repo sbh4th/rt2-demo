@@ -1,2 +1,2 @@
 # rt2-demo
-Demo exercise for RT2 session.
+Demo exercise for RT2 session. Now Updated!
